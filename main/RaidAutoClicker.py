@@ -11,7 +11,7 @@ if __name__ == '__main__':
             print("WARNING: Waiting 15 Minutes because of maintenence")
             time.sleep(900)
             click_button("screenshots/button_maintenence_ok.png")
-        # run_max_level_routine()
+        run_max_level_routine()
         time.sleep(1)
         click_button("screenshots/button_replay.png")
         time.sleep(2)
