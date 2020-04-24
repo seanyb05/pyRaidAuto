@@ -1,0 +1,6 @@
+pyinstaller
+PIL
+win32gui
+cv2
+numpy
+pyautogui
