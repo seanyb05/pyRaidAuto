@@ -6,6 +6,7 @@ added_files = [
          ( 'main\\screenshots\\*', 'screenshots' )
          ]
 
+
 a = Analysis(['main\\RaidAutoClicker.py'],
              pathex=['D:\\Documents\\CodingProjects\\PycharmProjects\\RaidAutoClicker'],
              binaries=[],
