@@ -1,10 +1,10 @@
 import pyautogui as ptg
 import time
 import win32gui
-from imagesearch import *
+from main import imagesearch
 from PIL import Image
 
-from main.imagesearch import imagesearch, click_image
+from main.imagesearch import imagesearch, click_image, imagesearcharea
 
 
 def this_is_on_screen(imageName, x1=None, y1=None, x2=None, y2=None):
@@ -23,14 +23,14 @@ def this_is_on_screen(imageName, x1=None, y1=None, x2=None, y2=None):
 def click_button(buttonLocation):
     pos = imagesearch(buttonLocation)
     img = Image.open(buttonLocation)
-    width, height = img.size
+
     if pos[0] != -1:
         click_image(buttonLocation, pos, "left", 0.001, offset=5)
-        ptg.click(clicks=1, button='left')
-        print(buttonLocation + " button clicked!")
+        img.close()
+        return True
     else:
-        print(buttonLocation + " button not found!")
-
+        img.close()
+        return False
 
 def drag_right_to_left(x=None, y=None):  # Drag from bottom of screen to top
     if x and y:
@@ -190,46 +190,16 @@ def click_y_shield_col(click_x, click_y):
         click_x_shield_row(click_x, click_y)
         click_y += 140
 
-
 def click_x_shield_row(click_x, click_y):
     for x in range(0, 6):
         ptg.click(x=click_x, y=click_y, clicks=1, button='left', interval=0.02)
         click_x += 133
 
+def click_battle_button():
+    click_button("screenshots/button_battle.png")
+    print("Battle button found")
+
+def hello_world():
+    return 0
 
 
-# class get_argument:
-#     argument_list = argparse.ArgumentParser()
-#     argument_list.add_argument("--database", "-db", help="Set the database you want to run this utility on.")
-#     argument_list.add_argument("--execute", "-e", help="This will execute hive commands, if not added, logs will contain"
-#                                                        " commands needed to be ran.")
-#     args = argument_list.parse_args()
-#
-#     def database_name(self):
-#         if self.args.database:
-#             database_name = self.args.database
-#             return database_name
-#         # for x in range(3):
-#         #     input("While executing, project did not find database variable, please enter database name now.")
-#         #     if x == 3:
-#         #         sys.exit("[ERROR] please enter database name.")
-#
-#     def execute_on(self):
-#         if self.args.execute.upper() == "ON":
-#             return True
-#         return False
-
-# class home_screen:
-#
-#     def navigate_to_campaign(self):
-#         click_button("screenshots/button_home_battle.png")
-#         return ""
-#
-#
-#     def execute_on(self):
-#         if self.args.execute.upper() == "ON":
-#             return True
-#         return False
-#
-# if __name__ == '__main__':
-#     print("nothing")
