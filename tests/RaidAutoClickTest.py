@@ -27,7 +27,8 @@ class RaidAutoClickerTests(unittest.TestCase):
     parent_dir = os.getcwd()
     file_path = os.path.abspath(__file__)
 
-    def open_image_timed(self, img_location):
+    def open_image_timed(self, image_name):
+        img_location = screenshots_dir+image_name+'.png'
         img = cv2.imread(img_location)
         cv2.imshow('tesImage', img)
         cv2.moveWindow('tesImage', 0, 0)
@@ -35,12 +36,12 @@ class RaidAutoClickerTests(unittest.TestCase):
         cv2.destroyAllWindows()
         self.thread_queue.put(True)
 
-    def search_image(self, img_location):
-        self.thread_queue.put(click_button(img_location))
+    def search_image(self, button_name):
+        self.thread_queue.put(click_button(button_name))
 
-    def assert_that_button_has_been_clicked(self, image_path):
-        open_image_thread = Thread(target=self.open_image_timed, args=(image_path,))
-        search_image_thread = Thread(target=self.search_image, args=(image_path,))
+    def assert_that_button_has_been_clicked(self, image_name):
+        open_image_thread = Thread(target=self.open_image_timed, args=(image_name,))
+        search_image_thread = Thread(target=self.search_image, args=(image_name,))
 
         open_image_thread.start()
         time.sleep(.1)
@@ -52,19 +53,19 @@ class RaidAutoClickerTests(unittest.TestCase):
         return self.thread_queue.get(),self.thread_queue.get()
 
     def test_battle_button_can_be_clicked(self):
-        image_name = 'button_battle.png'
+        image_name = 'button_battle'
         image_path = self.screenshots_dir + image_name
-        self.assertEqual(self.assert_that_button_has_been_clicked(image_path)[1],True)
+        self.assertEqual(self.assert_that_button_has_been_clicked(image_name)[1],True)
 
     def test_index_button_can_be_clicked(self):
-        image_name = 'button_index.png'
+        image_name = 'button_index'
         image_path = self.screenshots_dir + image_name
-        self.assertEqual(self.assert_that_button_has_been_clicked(image_path)[1],True)
+        self.assertEqual(self.assert_that_button_has_been_clicked(image_name)[1],True)
 
     def test_portal_button_can_be_clicked(self):
-        image_name = 'button_portal.png'
+        image_name = 'button_portal'
         image_path = self.screenshots_dir + image_name
-        self.assertEqual(self.assert_that_button_has_been_clicked(image_path)[1],True)
+        self.assertEqual(self.assert_that_button_has_been_clicked(image_name)[1],True)
 
     # def test_if_given_wrong_filename_return_file_not_found_exception(self):
     #     image_name = 'buttosn_battle.png'
