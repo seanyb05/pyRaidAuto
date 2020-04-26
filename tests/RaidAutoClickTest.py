@@ -54,17 +54,14 @@ class RaidAutoClickerTests(unittest.TestCase):
 
     def test_battle_button_can_be_clicked(self):
         image_name = 'button_battle'
-        image_path = self.screenshots_dir + image_name
         self.assertEqual(self.assert_that_button_has_been_clicked(image_name)[1],True)
 
     def test_index_button_can_be_clicked(self):
         image_name = 'button_index'
-        image_path = self.screenshots_dir + image_name
         self.assertEqual(self.assert_that_button_has_been_clicked(image_name)[1],True)
 
     def test_portal_button_can_be_clicked(self):
         image_name = 'button_portal'
-        image_path = self.screenshots_dir + image_name
         self.assertEqual(self.assert_that_button_has_been_clicked(image_name)[1],True)
 
     # def test_if_given_wrong_filename_return_file_not_found_exception(self):
@@ -72,6 +69,11 @@ class RaidAutoClickerTests(unittest.TestCase):
     #     image_path = self.screenshots_dir + image_name
     #     self.assertEqual(click_button(image_path), "File not found.")
 
+    def test_quest_routine(self):
+        image_name = 'button_quests'
+        self.assertEqual(self.assert_that_button_has_been_clicked(image_name)[1],True)
+        image_name = 'quests_dailyTab'
+        self.assertEqual(self.assert_that_button_has_been_clicked(image_name)[1],True)
 
 if __name__ == '__main__':
 

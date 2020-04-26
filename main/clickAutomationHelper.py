@@ -16,7 +16,7 @@ def this_is_on_screen(imageName, x1=None, y1=None, x2=None, y2=None):
     if x1 and y1 and x2 and y2:
         pos = imagesearcharea(image_path, x1, y1, x2, y2)
     else:
-        pos = imagesearch(imageName, precision=.85)
+        pos = imagesearch(image_path, precision=.85)
 
     if pos[0] != -1:
         ptg.moveTo(pos[0], pos[1])
@@ -27,7 +27,6 @@ def this_is_on_screen(imageName, x1=None, y1=None, x2=None, y2=None):
 
 def click_button(button_name):
     button_path = screenshots_dir + button_name + '.png'
-    print(button_path)
     pos = imagesearch(button_path)
     img = Image.open(button_path)
 
@@ -212,3 +211,10 @@ def click_battle_button():
 
 def quest_checker():
     click_button("button_quests")
+    time.sleep(2)
+    click_button("quests_dailyTab")
+
+def summon_three_champions():
+    click_button("button_portal")
+    time.sleep(2)
+    click_button("button_summon_buy")
