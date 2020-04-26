@@ -52,7 +52,6 @@ def drag_bottom_to_top(x=None, y=None):  # Drag from bottom of screen to top
     if x and y:
         ptg.leftClick(x, y)
         ptg.dragTo(x, 255, 1, button='left')
-        # ptg.scroll(-10000)
     if x and not y:
         ptg.moveTo(x, 996)
         ptg.dragTo(x, 255, 1, button='left')
@@ -251,7 +250,8 @@ def clan_boss_routine():
 
 
 def collect_gem_mine():
-    ptg.click(x=121,y=856)
+    if this_is_on_screen("button_gem_mine_notification"):
+        ptg.click(x=121,y=856)
 
 def get_image_coordinates(button_name):
     button_path = screenshots_dir + button_name + '.png'
@@ -335,3 +335,38 @@ def market_routine():
     time.sleep(.5)
 
     click_button("button_exit")
+
+def arena_routine():
+    arena_button_list = [[1710,393],[1710,569],[1710,744],[1710,922],[1710,393],[1710,569],[1710,744],[1710,923]]
+    click_button("button_battle")
+    time.sleep(.5)
+    click_button("battle_menu_arena")
+    time.sleep(.5)
+
+    for coordinate in arena_button_list:
+        if coordinate[1] == 922:
+            drag_bottom_to_top()
+            drag_bottom_to_top()
+
+        ptg.click(x=coordinate[0], y=coordinate[1])
+        time.sleep(.5)
+        click_button("arena_button_start")
+        time.sleep(2)
+
+        while True:
+            if this_is_on_screen("arena_button_auto"):
+                click_button("arena_button_auto")
+                break
+
+        while True:
+            if this_is_on_screen("button_arena_tapToContinue"):
+                click_button("button_arena_tapToContinue")
+                time.sleep(.5)
+                click_button("button_arena_returnToArena")
+                time.sleep(.5)
+                break
+
+    click_button("button_exit")
+    time.sleep(.5)
+    click_button("button_exit")
+
