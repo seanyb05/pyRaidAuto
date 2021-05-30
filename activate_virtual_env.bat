@@ -1,0 +1,1 @@
+D:\Documents\Projects\Python\VirtualEnvironments\vPyRaidAuto\Scripts\activate
